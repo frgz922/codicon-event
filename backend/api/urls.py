@@ -6,7 +6,6 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'box',views.BoxDataViewSet)
 
-
 urlpatterns = [
     path('',include(router.urls)),
     path('api-auth/', 
