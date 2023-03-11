@@ -2,6 +2,6 @@
 # Register your models here.
 
 from django.contrib import admin
-from .models import Detective
+from .models import BoxData
 
-admin.site.register(Detective)
+admin.site.register(BoxData)
