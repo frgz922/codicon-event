@@ -3,18 +3,6 @@ from django.db import models
 #models
 class BoxData(models.Model):
 
-    class packageTypes(models.TextChoices):
-        URNA = 'urna'
-        REGALO = 'regalo'
-        CAJA =  'caja'
-        CAJA_FUERTE = 'caja fuerte'
-    
-    class finalDestinations(models.TextChoices):
-        ENTERRAR = 'enterrar'
-        QUEMAR = 'quemar'
-        GUARDAR = 'guardar'
-        REGALAR = 'regalar'
-
     class paymentMethods(models.TextChoices):
         EFECTIVO = 'efectivo'
         TARJETA = 'tarjeta'
@@ -24,9 +12,9 @@ class BoxData(models.Model):
 
 
     letterContent = models.CharField(max_length=250)
-    images = models.ImageField(upload_to='images/')
-    packageType = models.CharField(choices=packageTypes.choices, default=packageTypes.CAJA, max_length=50)
-    finalDestination = models.CharField(choices=finalDestinations.choices, default=finalDestinations.ENTERRAR, max_length=50)
+    image = models.ImageField(upload_to='images/')
+    packageType = models.ForeignKey('packages', on_delete=models.CASCADE)
+    finalDestination = models.ForeignKey('destinations', on_delete=models.CASCADE)
     recipientName = models.CharField(max_length=250)
     recipientAddress = models.CharField(max_length=250)
     recipientPhone = models.CharField(max_length=250)
@@ -40,3 +28,20 @@ class BoxData(models.Model):
         return self.clientName
     
     
+
+class Packages(models.Model):
+    name: models.CharField(max_length=50)
+    dimensions: models.CharField(max_length=50)
+    price: models.CharField(max_length=50)
+    description: models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name
+    
+class Destinations(models.Model):
+    name: models.CharField(max_length=50)
+    price: models.CharField(max_length=50)
+    description: models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name
