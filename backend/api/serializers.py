@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import BoxData,Packages
+from .models import BoxData,Packages,Destinations
 
 class BoxDataSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,6 +20,17 @@ class PackageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Packages
         fields = ('id','name','dimensions','price','description')
+ 
+    def to_representation(self, instance):
+        return {
+            'name': instance.name,
+            'price': instance.price,
+        }
+    
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Destinations
+        fields = ('id','name','price','description')
  
     def to_representation(self, instance):
         return {
