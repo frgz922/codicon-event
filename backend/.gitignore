@@ -4,6 +4,7 @@ images/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+migrations/__pycache__/
 
 # C extensions
 *.so
