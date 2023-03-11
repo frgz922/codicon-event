@@ -6,6 +6,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'box',views.BoxDataViewSet)
 router.register(r'packages',views.PackagesViewSet)
+router.register(r'services',views.ServicesViewSet)
 
 urlpatterns = [
     path('',include(router.urls)),

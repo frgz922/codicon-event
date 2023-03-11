@@ -1,7 +1,6 @@
 
 from django.db import models
 
-
 #models
 
 class Packages(models.Model):
@@ -12,6 +11,7 @@ class Packages(models.Model):
 
     def __str__(self):
         return self.name
+    
     
 class Destinations(models.Model):
     name = models.CharField(max_length=50)
