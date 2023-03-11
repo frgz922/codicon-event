@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import BoxData
+from .models import BoxData,Packages
 
 class BoxDataSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +15,14 @@ class BoxDataSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
         return BoxData.objects.create(**validated_data)
+    
+class PackageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Packages
+        fields = ('id','name','dimensions','price','description')
+ 
+    def to_representation(self, instance):
+        return {
+            'name': instance.name,
+            'price': instance.price,
+        }

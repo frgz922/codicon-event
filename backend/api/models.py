@@ -5,18 +5,18 @@ from django.db import models
 #models
 
 class Packages(models.Model):
-    name: models.CharField(max_length=50)
-    dimensions: models.CharField(max_length=50)
-    price: models.CharField(max_length=50)
-    description: models.CharField(max_length=250)
+    name = models.CharField(max_length=50)
+    dimensions = models.CharField(max_length=50)
+    price = models.CharField(max_length=50)
+    description = models.CharField(max_length=250, null=True)
 
     def __str__(self):
         return self.name
     
 class Destinations(models.Model):
-    name: models.CharField(max_length=50)
-    price: models.CharField(max_length=50)
-    description: models.CharField(max_length=250)
+    name = models.CharField(max_length=50)
+    price = models.CharField(max_length=50)
+    description = models.CharField(max_length=250)
 
     def __str__(self):
         return self.name
