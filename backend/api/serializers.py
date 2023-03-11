@@ -1,6 +1,17 @@
 from rest_framework import serializers
 
-from .models import BoxData,Packages
+from .models import BoxData,Packages,Contact
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields= '__all__'
+        
+    def to_representation(self, instance):
+        return{
+            'name': instance.name,
+            'number_phone': instance.number_phone,
+        }
 
 class BoxDataSerializer(serializers.ModelSerializer):
     class Meta:
