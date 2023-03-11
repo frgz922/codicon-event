@@ -5,7 +5,7 @@ from .models import BoxData
 class BoxDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = BoxData
-        fields = ('id', 'letterContent', 'images', 'packageType', 'finalDestination', 'recipientName', 'recipientAddress', 'recipientPhone', 'clientName', 'clientAddress', 'clientPhone', 'clientEmail', 'paymentMethod')
+        fields = ('id', 'letterContent', 'image', 'packageType', 'finalDestination', 'recipientName', 'recipientAddress', 'recipientPhone', 'clientName', 'clientAddress', 'clientPhone', 'clientEmail', 'paymentMethod')
  
     def to_representation(self, instance):
         return {
