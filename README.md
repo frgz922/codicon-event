@@ -2,7 +2,7 @@
 
 Servicio para deshacerte de todo aquel recuerdo amargo que deseas eliminar.
 
-## Requerimientos
+## Requerimientos Backend
 
 - Python >= 3.8
 - Django==4.1.7
@@ -11,12 +11,16 @@ Servicio para deshacerte de todo aquel recuerdo amargo que deseas eliminar.
 - Pillow==9.4.0
 - virtualenv==20.20.0
 
-## Instalacion
+## Requerimientos Frontend
+
+- NodeJS
+
+## Instalacion Backend
 
 1. Crear nuevo ambiente virtual
 
 ```bash
-  python3 -m venv /path/to/new/virtual/environment
+  cd codicon-event/backend && python3 -m venv /path/to/new/virtual/environment
 ```
 
 2. Activar ambiente virtual
@@ -44,6 +48,28 @@ python manage.py runserver
 ```
 
 Ya puedes acceder desde la URL: http://127.0.0.1:8000/
+
+## Instalacion Frontend
+
+1. Accede a la carpeta
+
+```bash
+  cd codicon-event/frontend
+```
+
+2. Instalar dependencias
+
+```bash
+  npm i
+```
+
+3. Iniciar el servidor desde la carpeta raiz
+
+```bash
+npm run dev
+```
+
+Ya puedes acceder desde la URL: http://127.0.0.1:3000/
 
 ## Funcionamiento
 
