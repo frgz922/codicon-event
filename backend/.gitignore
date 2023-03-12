@@ -46,7 +46,7 @@ coverage.xml
 .python-version
 
 # VirtualEnv
-.venv/
+venv/
 
 # Developers
 *.sw*
@@ -55,3 +55,7 @@ manage.py
 
 # example database
 drf_example
+
+.vscode/
+
+*:Zone.Identifier
