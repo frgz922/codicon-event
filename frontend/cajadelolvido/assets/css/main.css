@@ -3,5 +3,23 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-100;
+  @apply bg-gray-100 scroll-smooth;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ef2a82;
+}
+
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #94a3b8;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ef2a82;
+  border: 2px solid #ef2a82;
 }

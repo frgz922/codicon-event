@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import BoxData,Packages,Destinations,Contact
+from .models import BoxData,Packages,Destinations,Contact, BoxDataImage
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -11,33 +11,54 @@ class ContactSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         return{
             'name': instance.name,
-            'number_phone': instance.number_phone,
+            'message': instance.message,
         }
+class BoxDataImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BoxDataImage
+        fields = ('image',)
 
 class BoxDataSerializer(serializers.ModelSerializer):
+
+    images = BoxDataImageSerializer(source='boximage_set', many=True, read_only=True)
+    recipientName = serializers.CharField(max_length=250, allow_blank=True)
+    recipientPhone = serializers.CharField(max_length=250, allow_blank=True)
+    recipientAddress = serializers.CharField(max_length=250, allow_blank=True)
+
     class Meta:
         model = BoxData
-        fields = ('id', 'letterContent', 'image', 'packageType', 'finalDestination', 'recipientName', 'recipientAddress', 'recipientPhone', 'clientName', 'clientAddress', 'clientPhone', 'clientEmail', 'paymentMethod')
+        fields = ('id', 'letterContent', 'images', 'packageType', 'finalDestination', 'recipientName', 'recipientAddress', 'recipientPhone', 'clientName', 'clientPhone', 'clientEmail', 'paymentMethod', 'confirmationNumber', 'total')
  
     def to_representation(self, instance):
         return {
+            'id': instance.id,
             'clientName': instance.clientName,
-            'clientAddress': instance.clientAddress,
         }
     
     def create(self, validated_data):
-        return BoxData.objects.create(**validated_data)
+        images_data = self.context.get('view').request.FILES
+        box = BoxData.objects.create(**validated_data)
+        for image_data in images_data.values():
+            BoxDataImage.objects.create(image=image_data, boxData=box)
+        return box
     
 class PackageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Packages
-        fields = ('id','name','dimensions','price','description')
+        fields = ('id','name','dimensions','price','description', 'icon')
  
     def to_representation(self, instance):
         return {
+            'id': instance.id,
             'name': instance.name,
             'price': instance.price,
+            'description': instance.description,
+            'icon': instance.icon,
+            'dimensions': instance.dimensions,
         }
+    
+    def update(self, instance, validated_data):
+        return super().update(instance, validated_data)
     
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -46,6 +67,11 @@ class ServiceSerializer(serializers.ModelSerializer):
  
     def to_representation(self, instance):
         return {
+            'id': instance.id,
             'name': instance.name,
             'price': instance.price,
+            'description': instance.description,
         }
+    
+    def update(self, instance, validated_data):
+        return super().update(instance, validated_data)

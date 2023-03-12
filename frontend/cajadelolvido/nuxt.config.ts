@@ -1,9 +1,13 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    image: {
+        dir: 'assets/images'
+    },
     modules: [
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss',
+        '@nuxt/image-edge',
     ],
     css: [
         '@/assets/css/main.css',
+        '@/assets/css/fontface.css',
     ],
 })
