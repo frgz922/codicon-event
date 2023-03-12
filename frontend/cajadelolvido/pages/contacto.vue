@@ -3,7 +3,7 @@
         <h1 class="text-accent font-blackops text-2xl">Contacto</h1>
         <div class="grid grid-cols-2 items-center">
             <div class="font-blackops text-bkg font-bold text-lg gap-6 space-y-16">
-                <div>Escribenos todas tus dudas y pregunta y nuestros agentes te respodera con gusto.</div>
+                <div>Escribenos todas tus dudas o preguntas y nuestros agentes te respoderan con gusto.</div>
                 <div class="space-y-5">
                     <div class="text-sm flex gap-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
@@ -115,6 +115,9 @@ export default defineComponent({
             }).then((response) => {
                 if (response.status === 200 || response.status === 201) {
                     this.show = true
+                    this.name = ''
+                    this.email = ''
+                    this.message = ''
                 }
             });
         }
